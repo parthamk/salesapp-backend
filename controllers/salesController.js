@@ -6,14 +6,14 @@ const Sale = require('../models/Sale');
 router.post('/addSales', async (req, res) => {
     try {
       const totalAmount = req.body.quantity * req.body.amount;
-  
+      
       const sale = new Sale({
         productName: req.body.productName,
         quantity: req.body.quantity,
         amount: req.body.amount,
         totalAmount: totalAmount
       });
-  
+      
       const savedSale = await sale.save();
       res.json(savedSale);
     } catch (err) {

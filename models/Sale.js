@@ -7,6 +7,4 @@ const SaleSchema = mongoose.Schema({
   totalAmount: Number
 });
 
-
-
 module.exports = mongoose.model('Sale', SaleSchema);
