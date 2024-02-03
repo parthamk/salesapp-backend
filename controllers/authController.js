@@ -8,15 +8,23 @@ exports.register = async (req, res) =>{
     if(!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password){
       return res.status(400).json({message: 'All fields are required'});
     }
-
+    //if not null, firstname, lastname, email, pass show error for each of them
+    //server side proper email validation needed
+    //PASSWORD RULE 
+    // 1. MIN 8 LENGTH
+    // 2. 1 SPECIAL CHAR
+    // 3. 1 UPPER CASE, 1 LOWER CASE, 1 NUMBER
+    // PASSWORD SHOULD MATCH WITH CONFIRM PASSWORD
+    
     // Validate password is alphanumeric
     // const alphanumericRegex = /^[0-9a-zA-Z]+$/;
     // if(!alphanumericRegex.test(req.body.password)){
     //   return res.status(400).json({message: 'Password must be alphanumeric.'})
     // }
     // Hash password
+    
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
+    // 
     // check if user with the email already exists
     const existingUser = await User.findOne({email:req.body.email});
     if(existingUser){
